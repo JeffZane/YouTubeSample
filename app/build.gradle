@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.nestia.living"
+        minSdkVersion 16
+        targetSdkVersion 25
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../androider.me.keystore.jks")
+            storePassword "lidemin2009"
+            keyAlias "Androider.me"
+            keyPassword "lidemin2009"
+        }
+        release {
+            storeFile file("../com.nestia.keystore.jks")
+            storePassword "nestiainfoadmin"
+            keyAlias "nestia"
+            keyPassword "nestiainfoadmin"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.android.support:appcompat-v7:25.3.0'
+}
